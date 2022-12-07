@@ -7,6 +7,7 @@ import com.api.machinemonitor.utils.GetMachineInfoUtil;
 import java.net.UnknownHostException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,11 @@ public class MachineController {
 	MachineService machineService;
 	
 	@GetMapping
+	public ResponseEntity<Object> getMachinesInfo() {
+		return ResponseEntity.ok(machineService.findAll());
+	}
+	
+	@GetMapping("/post")
 	public ResponseEntity<Object> storeMachineInfo() {
 		try {
 			Machine machine = new GetMachineInfoUtil().exec();

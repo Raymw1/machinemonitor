@@ -11,7 +11,7 @@ public class GetMachineInfoUtil {
 	public Machine exec() throws UnknownHostException {
 	  InetAddress name = InetAddress.getLocalHost();
 	  OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
-	  double cpu = osBean.getCpuLoad() * 100;
+	  double cpu = osBean.getCpuLoad() * 1000;
 	  String traffic;
 	  if (cpu < 35) {
 	  	traffic = "green";
@@ -22,8 +22,8 @@ public class GetMachineInfoUtil {
 	  }
 	  var machine = new Machine();
 	  machine.setName(name.toString());
-	  machine.setCpu_usage(cpu);
-	  machine.setTraffic_light(traffic);
+	  machine.setCpuUsage(cpu);
+	  machine.setTrafficLight(traffic);
 	  return machine;
 	}
 }

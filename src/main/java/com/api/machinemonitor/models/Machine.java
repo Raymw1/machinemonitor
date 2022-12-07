@@ -3,6 +3,8 @@ package com.api.machinemonitor.models;
 import java.io.Serializable;
 import java.util.UUID;
 
+import org.springframework.data.redis.core.RedisHash;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "machines")
+@RedisHash("machine")
 public class Machine implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -26,8 +29,8 @@ public class Machine implements Serializable {
 	
 	
 	@Column(nullable = false)
-	private double cpu_usage;
+	private double cpuUsage;
 	
 	@Column(nullable = false)
-	private String traffic_light;
+	private String trafficLight;
 }
