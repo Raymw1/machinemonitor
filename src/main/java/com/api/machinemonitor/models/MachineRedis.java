@@ -1,26 +1,26 @@
 package com.api.machinemonitor.models;
 
-import java.io.Serializable;
+
 import java.util.UUID;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.redis.core.RedisHash;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Entity
-@Table(name = "machines")
-public class Machine implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@RedisHash(value = "machine", timeToLive = 10)
+public class MachineRedis {	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Indexed
 	private UUID id;
 	
 	@Column(nullable = false, length = 255)
