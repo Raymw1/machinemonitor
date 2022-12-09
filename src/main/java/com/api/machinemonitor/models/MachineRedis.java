@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@RedisHash(value = "machine", timeToLive = 10)
+@RedisHash(value = "machine", timeToLive = 3600*2)
 public class MachineRedis {	
 	@Id
 	@Indexed
